@@ -82,17 +82,12 @@ class TNEFAttachment:
    }
 
    def __init__(self):
-      self.mapi_attrs = []
+      self.mapi_attrs = {}
 
    def long_filename(self):
       atname = TNEFMAPI_Attribute.MAPI_ATTACH_LONG_FILENAME
-      attr = None
-      for a in self.mapi_attrs:
-         if a.name == atname:
-            attr = a
-            break
-
-      if attr is not None:
+      if atname in self.mapi_attrs:
+         attr = self.mapi_attrs[atname]
          fn = str(attr.data).replace('0','')
       else:
          fn = self.name
@@ -105,7 +100,9 @@ class TNEFAttachment:
       if attribute.name == TNEF.ATTATTACHMODIFYDATE:
          logger.debug("No date support yet!")
       elif attribute.name == TNEF.ATTATTACHMENT:
-         self.mapi_attrs += decode_mapi(attribute.data)
+         attrs = decode_mapi(attribute.data)
+         attr_names = [attr.name for attr in attrs]
+         self.mapi_attrs.update(zip(attr_names, attrs))
       elif attribute.name == TNEF.ATTATTACHTITLE:
          self.name = attribute.data.strip(chr(0))  # remove any NULLs
       elif attribute.name == TNEF.ATTATTACHDATA:
