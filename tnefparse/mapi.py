@@ -6,6 +6,33 @@ from util import bytes_to_int
 logging.basicConfig()
 logger = logging.getLogger("mapi-decode")
 
+# ANSI codepages
+# ref: http://msdn.microsoft.com/en-us/library/windows/desktop/dd317756%28v=vs.85%29.aspx
+CODEPAGES = {
+   437: "ibm437",
+   850: "ibm850",
+   1250: "windows-1250",
+   1251: "windows-1251",
+   1252: "windows-1252",
+   1253: "windows-1253",
+   1254: "windows-1254",
+   1255: "windows-1255",
+   1256: "windows-1256",
+   1257: "windows-1257",
+   1258: "windows-1258",
+   28591: "iso-8859-1",
+   28592: "iso-8859-2",
+   28593: "iso-8859-3",
+   28594: "iso-8859-4",
+   28595: "iso-8859-5",
+   28596: "iso-8859-6",
+   28597: "iso-8859-7",
+   28598: "iso-8859-8",
+   28599: "iso-8859-9",
+   28603: "iso-8859-13",
+   28605: "iso-8859-15"
+}
+
 def decode_mapi(data):
    "decode MAPI types"
    SZMAPI_UNSPECIFIED    = 0x0000 # MAPI Unspecified
