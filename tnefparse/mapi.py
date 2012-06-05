@@ -395,6 +395,7 @@ class TNEFMAPI_Attribute:
    MAPI_ATTACH_LONG_PATHNAME = 0x370D
    MAPI_ATTACH_MIME_TAG = 0x370E
    MAPI_ATTACH_ADDITIONAL_INFO = 0x370F
+   MAPI_ATTACH_FLAGS = 0x3714
    MAPI_DISPLAY_TYPE = 0x3900
    MAPI_TEMPLATEID = 0x3902
    MAPI_PRIMARY_CAPABILITY = 0x3904
@@ -526,8 +527,13 @@ class TNEFMAPI_Attribute:
    MAPI_YPOS = 0x3F06
    MAPI_CONTROL_ID = 0x3F07
    MAPI_INITIAL_DETAILS_PANE = 0x3F08
+   MAPI_INTERNET_CODEPAGE = 0x3FDE
    MAPI_ID_SECURE_MIN = 0x67F0
    MAPI_ID_SECURE_MAX = 0x67FF
+   MAPI_ATTACHMENT_LINKID = 0X7FFA
+   MAPI_ATTACHMENT_FLAGS = 0X7FFD
+   MAPI_ATTACHMENT_HIDDEN = 0X7FFE
+   MAPI_ATTACHMENT_CONTACT_PHOTO = 0X7FFF
 
    codes = {
       MAPI_ACKNOWLEDGEMENT_MODE                       :  "MAPI_ACKNOWLEDGEMENT_MODE",
@@ -820,6 +826,7 @@ class TNEFMAPI_Attribute:
       MAPI_ATTACH_LONG_PATHNAME                       :  "MAPI_ATTACH_LONG_PATHNAME",
       MAPI_ATTACH_MIME_TAG                            :  "MAPI_ATTACH_MIME_TAG",
       MAPI_ATTACH_ADDITIONAL_INFO                     :  "MAPI_ATTACH_ADDITIONAL_INFO",
+      MAPI_ATTACH_FLAGS                               :  "MAPI_ATTACH_FLAGS",
       MAPI_DISPLAY_TYPE                               :  "MAPI_DISPLAY_TYPE",
       MAPI_TEMPLATEID                                 :  "MAPI_TEMPLATEID",
       MAPI_PRIMARY_CAPABILITY                         :  "MAPI_PRIMARY_CAPABILITY",
@@ -951,8 +958,13 @@ class TNEFMAPI_Attribute:
       MAPI_YPOS                                       :  "MAPI_YPOS",
       MAPI_CONTROL_ID                                 :  "MAPI_CONTROL_ID",
       MAPI_INITIAL_DETAILS_PANE                       :  "MAPI_INITIAL_DETAILS_PANE",
+      MAPI_INTERNET_CODEPAGE                          :  "MAPI_INTERNET_CODEPAGE",
       MAPI_ID_SECURE_MIN                              :  "MAPI_ID_SECURE_MIN",
-      MAPI_ID_SECURE_MAX                              :  "MAPI_ID_SECURE_MAX"
+      MAPI_ID_SECURE_MAX                              :  "MAPI_ID_SECURE_MAX",
+      MAPI_ATTACHMENT_LINKID                          :  "MAPI_ATTACHMENT_LINKID",
+      MAPI_ATTACHMENT_FLAGS                           :  "MAPI_ATTACHMENT_FLAGS",
+      MAPI_ATTACHMENT_HIDDEN                          :  "MAPI_ATTACHMENT_HIDDEN",
+      MAPI_ATTACHMENT_CONTACT_PHOTO                   :  "MAPI_ATTACHMENT_CONTACT_PHOTO"
    }
 
    OutlookGuid = '05133f00aa00da98101b450b6ed8da90'
