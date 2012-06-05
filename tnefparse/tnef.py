@@ -104,7 +104,6 @@ class TNEFAttachment:
          self.mapi_attrs.update(zip(attr_names, attrs))
       elif attribute.name == TNEF.ATTATTACHTITLE:
          self.name = attribute.data
-         print self.name
       elif attribute.name == TNEF.ATTATTACHDATA:
          self.data = attribute.data
       else:
