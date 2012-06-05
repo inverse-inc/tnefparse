@@ -197,7 +197,7 @@ class TNEF:
       self.key = bytes_to_int(data[4:6])
       self.objects = []
       self.attachments = []
-      self.mapiprops = []
+      self.mapi_attrs = {}
       offset = 6
 
       if not do_checksum:
@@ -217,14 +217,23 @@ class TNEF:
 
          # handle MAPI properties
          elif obj.name == TNEF.ATTMAPIPROPS:
-            self.mapiprops = decode_mapi(obj.data)
+            attrs = decode_mapi(obj.data)
+            attr_names = [attr.name for attr in attrs]
+            self.mapi_attrs.update(zip(attr_names, attrs))
 
             # handle BODY property
-            for p in self.mapiprops:
-               if p.name == TNEFMAPI_Attribute.MAPI_BODY:
-                  self.body = p.data
-               elif p.name == TNEFMAPI_Attribute.MAPI_BODY_HTML:
-                  self.htmlbody = p.data
+            if TNEFMAPI_Attribute.MAPI_BODY in self.mapi_attrs:
+               p = self.mapi_attrs[TNEFMAPI_Attribute.MAPI_BODY]
+               self.body = p.data
+            else:
+               self.body = None
+
+            # handle BODY_HTML property
+            if TNEFMAPI_Attribute.MAPI_BODY_HTML in self.mapi_attrs:
+               p = self.mapi_attrs[TNEFMAPI_Attribute.MAPI_BODY_HTML]
+               self.htmlbody = p.data
+            else:
+               self.htmlbody = None
          else:
             logger.warn("Unknown TNEF Object: %s" % obj)
 
