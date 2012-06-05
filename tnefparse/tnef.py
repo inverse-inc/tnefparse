@@ -88,12 +88,11 @@ class TNEFAttachment:
       atname = TNEFMAPI_Attribute.MAPI_ATTACH_LONG_FILENAME
       if atname in self.mapi_attrs:
          attr = self.mapi_attrs[atname]
-         fn = str(attr.data).replace('0','')
+         fn = "".join(attr.data)
       else:
          fn = self.name
 
       return fn.split('\\')[-1]
-
 
    def add_attr(self, attribute):
       logger.debug("Attachment attr name: 0x%4.4x" % attribute.name)
@@ -104,7 +103,8 @@ class TNEFAttachment:
          attr_names = [attr.name for attr in attrs]
          self.mapi_attrs.update(zip(attr_names, attrs))
       elif attribute.name == TNEF.ATTATTACHTITLE:
-         self.name = attribute.data.strip(chr(0))  # remove any NULLs
+         self.name = attribute.data
+         print self.name
       elif attribute.name == TNEF.ATTATTACHDATA:
          self.data = attribute.data
       else:
